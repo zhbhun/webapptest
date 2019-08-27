@@ -1,0 +1,31 @@
+{
+  "browser": "chrome",
+  "chrome": {
+    "args": [
+      "disable-http2"
+    ],
+    "cdp": {
+      "performance": true
+    },
+    "CPUThrottlingRate": 3,
+    "collectLongTasks": true,
+    "collectPerfLog": true,
+    "enableTraceScreenshots": true,
+    "includeResponseBodies": false,
+    "mobileEmulation": {
+      "deviceName": "iPhone 6"
+    },
+    "timeline": true
+  },
+  "connectivity": {
+    "engine": "external",
+    "profile": "3g"
+  },
+  "gzipHar": false,
+  "iterations": 1,
+  "screenshot": true,
+  "useSameDir": true,
+  "video": true,
+  "visualElements": true,
+  "visualMetrics": true
+}
