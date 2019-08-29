@@ -133,11 +133,6 @@ export default {
                   component: './dashboard/analysis',
                 },
                 {
-                  name: 'analysis1',
-                  path: '/dashboard/analysis1',
-                  component: './dashboard/analysis1',
-                },
-                {
                   name: 'monitor',
                   path: '/dashboard/monitor',
                   component: './dashboard/monitor',
