@@ -1,5 +1,8 @@
 export default {
   'menu.welcome': '欢迎',
+  'menu.test': '测试',
+  'menu.test.analysis': '分析',
+  'menu.test.result': '结果',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.login': '登录',

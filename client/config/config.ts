@@ -123,6 +123,24 @@ export default {
           authority: ['admin', 'user'],
           routes: [
             {
+              path: '/test',
+              name: 'test',
+              icon: 'experiment',
+              routes: [
+                {
+                  name: 'analysis',
+                  path: '/test/analysis',
+                  component: './test/analysis',
+                },
+                {
+                  hideInMenu: true,
+                  name: 'result',
+                  path: '/test/results/:id',
+                  component: './test/result',
+                },
+              ],
+            },
+            {
               path: '/dashboard',
               name: 'dashboard',
               icon: 'dashboard',
