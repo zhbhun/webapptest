@@ -1,12 +1,12 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import TestService from './Test.service';
 
 @Controller('api/test')
 export default class TestController {
   constructor(private readonly testService: TestService) {}
 
-  @Get('analysis')
-  async analysis(@Query() params): Promise<Object> {
+  @Post('analysis')
+  async analysis(@Body() params): Promise<Object> {
     try {
       const id = await this.testService.analysis(params.url);
       return {
