@@ -32,10 +32,10 @@ const VisualMetrics: React.FC<VisualMetricsProps> = ({ browsertime, id }) => {
       <VisualProgress data={visitData} />
       <Player
         fluid={false}
-        poster={`${location.origin}/static/test/${id}/screenshots/1.jpg`}
+        poster={`${location.origin}/output/test/${id}/screenshots/1.jpg`}
         width="100%"
         height={360}
-        src={`${location.origin}/static/test/${id}/video/1.mp4`}
+        src={`${location.origin}/output/test/${id}/video/1.mp4`}
       >
         <BigPlayButton position="center" />
         <ControlBar autoHide={false}>
@@ -58,7 +58,7 @@ const VisualMetrics: React.FC<VisualMetricsProps> = ({ browsertime, id }) => {
               <div className={styles.filmstripItemTime}>{`${(time / 1000).toFixed(3)}s`}</div>
               <img
                 className={styles.filmstripItemImage}
-                src={`${location.origin}/static/test/${id}/video/images/1/${image}`}
+                src={`${location.origin}/output/test/${id}/video/images/1/${image}`}
                 alt="screenshot"
               />
               <div className={styles.filmstripItemPercent}>{percent}</div>

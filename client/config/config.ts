@@ -402,10 +402,10 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/api': '/api' },
     },
-    '/static/': {
+    '/output/': {
       target: 'http://localhost:3000/',
       changeOrigin: true,
-      pathRewrite: { '^/static': '/static' },
+      pathRewrite: { '^/output': '/output' },
     },
   },
 } as IConfig;

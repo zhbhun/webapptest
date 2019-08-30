@@ -1,15 +1,10 @@
-import * as fs from 'fs';
-import * as path from 'path';
 import * as express from 'express';
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-
-const CONTEXT = fs.realpathSync(process.cwd());
+import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { OUTPUT_PATH } from '../config';
 
 @Module({})
 export default class StaticModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(express.static(path.resolve(CONTEXT, 'target')))
-      .forRoutes('static');
+    consumer.apply(express.static(OUTPUT_PATH)).forRoutes('output');
   }
 }

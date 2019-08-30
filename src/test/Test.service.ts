@@ -5,19 +5,17 @@ import * as shell from 'shelljs';
 import * as uuidv4 from 'uuid/v4';
 import * as bluebird from 'bluebird';
 import { Injectable } from '@nestjs/common';
+import { CONTEXT, OUTPUT_PATH } from '../config';
 
 const SITESPEED = /sitespeedio\/browsertime/gi;
-const CONTEXT = fs.realpathSync(process.cwd());
 
-const getOutput = id => `./target/test/${id}`;
-const getOutputPath = id => path.resolve(CONTEXT, getOutput(id));
-const getInfoPath = id => path.resolve(CONTEXT, getOutput(id), 'info.json');
+const getOutput = id => `./test/${id}`;
+const getOutputPath = id => path.resolve(OUTPUT_PATH, getOutput(id));
+const getInfoPath = id => path.resolve(getOutputPath(id), 'info.json');
 const getBrowsertimePath = id =>
-  path.resolve(CONTEXT, getOutput(id), 'browsertime.json');
-const getHARPath = id =>
-  path.resolve(CONTEXT, getOutput(id), 'browsertime.har');
-const getImagesPath = id =>
-  path.resolve(CONTEXT, getOutput(id), 'video/images/1');
+  path.resolve(getOutputPath(id), 'browsertime.json');
+const getHARPath = id => path.resolve(getOutputPath(id), 'browsertime.har');
+const getImagesPath = id => path.resolve(getOutputPath(id), 'video/images/1');
 
 @Injectable()
 export default class TestService {
@@ -61,13 +59,18 @@ export default class TestService {
         info = await fse.readJson(getInfoPath(id));
       } catch (error) {}
       if (info && info.url) {
-        const output = getOutput(id);
         const { url } = info;
+        const output = getOutput(id);
+        await fse.copy(
+          path.resolve(CONTEXT, '.browsertime.json'),
+          path.resolve(OUTPUT_PATH, '.browsertime.json'),
+        );
         shell.exec(
           `docker run -e TZ=Asia/Shanghai --shm-size=1g --network=3g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime ${url} --resultDir ${output}`,
           {
             async: true,
             silent: true,
+            cwd: OUTPUT_PATH,
           },
           (code, stdout, stderr) => {
             this.running = null;
@@ -129,7 +132,9 @@ export default class TestService {
         if (isEnd) {
           const browsertime = await fse.readJson(browsertimePath);
           const har = await fse.readJson(getHARPath(id));
-          const images = await bluebird.promisify(fs.readdir)(getImagesPath(id));
+          const images = await bluebird.promisify(fs.readdir)(
+            getImagesPath(id),
+          );
           browsertime[0].files.images = images;
           return {
             stage: 0,
