@@ -1,4 +1,12 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "client", "test", "dist", "**/*spec.ts"]
+  "exclude": [
+    "browsertime-results",
+    "node_modules",
+    "client",
+    "test",
+    "dist",
+    "target",
+    "**/*spec.ts"
+  ]
 }

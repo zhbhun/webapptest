@@ -11,5 +11,5 @@
     "baseUrl": "./",
     "incremental": true
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["browsertime-results", "node_modules", "dist", "target"]
 }
