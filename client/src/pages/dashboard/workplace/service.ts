@@ -1,4 +1,5 @@
 import request from '@/utils/request';
+import mock from './_mock';
 
 export async function queryProjectNotice() {
   return request('/api/project/notice');
@@ -13,5 +14,6 @@ export async function fakeChartData() {
 }
 
 export async function queryCurrent() {
-  return request('/api/currentUser');
+  return Promise.resolve(mock['GET  /api/currentUser']);
+  // return request('/api/currentUser');
 }

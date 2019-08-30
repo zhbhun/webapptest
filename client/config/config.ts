@@ -88,6 +88,7 @@ export default {
       path: '/',
       component: '../layouts/BlankLayout',
       routes: [
+        /*
         {
           path: '/user',
           component: '../layouts/UserLayout',
@@ -116,11 +117,12 @@ export default {
             },
           ],
         },
+        */
         {
           path: '/',
           component: '../layouts/BasicLayout',
           Routes: ['src/pages/Authorized'],
-          authority: ['admin', 'user'],
+          // authority: ['admin', 'user'],
           routes: [
             {
               path: '/test',
@@ -140,6 +142,7 @@ export default {
                 },
               ],
             },
+            /*
             {
               path: '/dashboard',
               name: 'dashboard',
@@ -332,6 +335,11 @@ export default {
               redirect: '/dashboard/analysis',
               authority: ['admin', 'user'],
             },
+            */
+            {
+              path: '/',
+              redirect: '/test/analysis',
+            },
             {
               component: '404',
             },
@@ -388,13 +396,11 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  /*
   proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
+    '/api/': {
+      target: 'http://localhost:3000/',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      pathRewrite: { '^/api': '/api' },
     },
   },
-  */
 } as IConfig;
