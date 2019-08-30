@@ -12,7 +12,7 @@ const perfCascadeOptions = {
   showIndicatorIcons: false,
   leftColumnWidth: 25,
   showUserTiming: true,
-  showUserTimingEndMarker: true,
+  showUserTimingEndMarker: false,
 };
 
 interface VisualMetrics {

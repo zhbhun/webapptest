@@ -3,6 +3,7 @@ import * as fse from 'fs-extra';
 import * as path from 'path';
 import * as shell from 'shelljs';
 import * as uuidv4 from 'uuid/v4';
+import * as bluebird from 'bluebird';
 import { Injectable } from '@nestjs/common';
 
 const SITESPEED = /sitespeedio\/browsertime/gi;
@@ -15,6 +16,8 @@ const getBrowsertimePath = id =>
   path.resolve(CONTEXT, getOutput(id), 'browsertime.json');
 const getHARPath = id =>
   path.resolve(CONTEXT, getOutput(id), 'browsertime.har');
+const getImagesPath = id =>
+  path.resolve(CONTEXT, getOutput(id), 'video/images/1');
 
 @Injectable()
 export default class TestService {
@@ -126,6 +129,8 @@ export default class TestService {
         if (isEnd) {
           const browsertime = await fse.readJson(browsertimePath);
           const har = await fse.readJson(getHARPath(id));
+          const images = await bluebird.promisify(fs.readdir)(getImagesPath(id));
+          browsertime[0].files.images = images;
           return {
             stage: 0,
             info,

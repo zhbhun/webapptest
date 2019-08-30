@@ -64,7 +64,7 @@ const Result: React.FC<ResultProps> = ({
       {stage === 0 ? (
         <>
           <Dashboard browsertime={browsertime} />
-          <VisualMetrics browsertime={browsertime} />
+          <VisualMetrics id={id} browsertime={browsertime} />
           <Waterfall har={har} />
         </>
       ) : (
