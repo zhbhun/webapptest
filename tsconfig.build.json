@@ -6,7 +6,7 @@
     "client",
     "test",
     "dist",
-    "target",
+    "output",
     "**/*spec.ts"
   ]
 }
