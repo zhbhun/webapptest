@@ -24,24 +24,18 @@ describe('TestService', () => {
   });
 
   describe('runTest', () => {
-    it('runTest return json', () => {
-      const promise = testService.runTest('https://www.baidu.com');
-      return new Promise(resolve => {
+    it('runTest return json', async () => {
+      const id = await testService.analysis('https://www.baidu.com');
+      expect(typeof id === 'string').toBeTruthy();
+      await new Promise(resolve => {
         setTimeout(() => {
           resolve();
         }, 3000); // 延迟一会便于查询容器数量
-      }).then(() => {
-        expect(testService.getPendingCount() === 1).toBeTruthy();
-        return testService.getTestingCount().then(count => {
-          expect(count >= 1).toBeTruthy();
-          return promise.then(json => {
-            expect(typeof json === 'object').toBeTruthy();
-            expect(typeof json.id === 'string').toBeTruthy();
-            expect(typeof json.timestamp === 'number').toBeTruthy();
-            expect(typeof json.browsertime === 'object').toBeTruthy();
-          });
-        });
       });
+      expect(testService.getPendingCount() === 1).toBeTruthy();
+      expect(testService.getPendingCountById(id) === 0).toBeTruthy();
+      const count = await testService.getTestingCount();
+      expect(count >= 1).toBeTruthy();
     }, 60000);
   });
 });
