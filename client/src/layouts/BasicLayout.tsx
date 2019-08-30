@@ -43,7 +43,8 @@ const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
 
 const footerRender: BasicLayoutProps['footerRender'] = (_, defaultDom) => {
   if (!isAntDesignPro()) {
-    return defaultDom;
+    // return defaultDom;
+    return null;
   }
 
   return (
@@ -135,7 +136,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       >
         {children}
       </ProLayout>
-      <SettingDrawer
+      {/* <SettingDrawer
         settings={settings}
         onSettingChange={config =>
           dispatch({
@@ -143,7 +144,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             payload: config,
           })
         }
-      />
+      /> */}
     </>
   );
 };
