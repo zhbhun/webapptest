@@ -57,7 +57,8 @@ const Result: React.FC<ResultProps> = ({
       payload: id,
     });
   }, [id]);
-  const { stage, info, browsertime, har } = testResult;
+  const { stage, info, browsertime: bs, har } = testResult || {};
+  const browsertime = bs && bs[0];
   return (
     <PageHeaderWrapper content={<PageHeaderContent testInfo={info} />} title={false}>
       {stage === 0 ? (

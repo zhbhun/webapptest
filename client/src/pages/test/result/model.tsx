@@ -1,6 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { message } from 'antd';
+import { delay } from 'redux-saga';
 import { ResultData } from './data.d';
 import { getResult } from './service';
 
@@ -36,6 +37,14 @@ const Model: ModelType = {
           type: 'save',
           payload: data,
         });
+        const { stage } = data;
+        if (stage >= 1) {
+          yield delay(1000);
+          yield put({
+            type: 'fetch',
+            payload: id,
+          });
+        }
       } else {
         message.error(msg);
       }

@@ -1,4 +1,4 @@
-export default {
+export default [{
   info: {
     browsertime: {
       version: '5.7.3',
@@ -1700,4 +1700,4 @@ export default {
       },
     },
   },
-};
+}];

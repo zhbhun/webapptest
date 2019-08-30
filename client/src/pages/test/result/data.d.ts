@@ -40,7 +40,7 @@ export interface Browsertime {
 export interface ResultData {
   stage: number; // -1|未知;0|成功;1|测试;>2|排队中
   info?: TestInfo;
-  browsertime?: Browsertime;
+  browsertime?: Browsertime[];
   har?: object,
 }
 
